@@ -1,10 +1,1 @@
 #!/bin/sh
-
-set -e
-
-if [ "x$1" = xremove ]; then
-	update-alternatives \
-		--remove default.plymouth /usr/share/plymouth/themes/blankon/blankon.plymouth
-fi
-
-#DEBHELPER#

@@ -18,9 +18,7 @@
 
 case "$1" in
     configure)
-	update-alternatives \
-		--install /usr/share/plymouth/default.plymouth default.plymouth \
-		/usr/share/plymouth/themes/blankon/blankon.plymouth 100
+	plymouth-set-default-theme blankon
 
 	if which update-initramfs >/dev/null 2>&1
 	then
