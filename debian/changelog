@@ -1,3 +1,9 @@
+plymouth-theme-blankon (0.5) tambora; urgency=medium
+
+  * upload to tambora
+
+ -- mijortsa <azis.astrojim@surabaya.di.blankon.in>  Thu, 06 Mar 2014 22:24:21 +0700
+
 plymouth-theme-blankon (0.4) suroboyo; urgency=medium
 
   * Added default.grub to make grub style
