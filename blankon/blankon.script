@@ -78,7 +78,7 @@ fun TextYOffset() {
     local.text_height;
     local.min_height;
 
-    # Put the 1st line below the logo + some spacing 
+    # Put the 1st line below the logo + some spacing
     y = logo.y + logo.height + (progress_indicator.bullet_height * 7 ); # + logo_spacing;
 
     text_height = first_line_height * 7.5;
@@ -105,7 +105,7 @@ fun StringString(string, substring) {
         }
         start++;
     }
-    
+
     return NULL;
 }
 
@@ -120,7 +120,7 @@ fun StringCopy (source, beginning, end) {
     for (index = beginning; ( ( (end == NULL) || (index <= end) ) && (String(source).CharAt(index)) ); index++) {
         local.destination += String(source).CharAt(index);
     }
-    
+
     return local.destination;
 }
 
@@ -211,10 +211,10 @@ starting.sprite.SetOpacity(0);
 
 if (mode == "shutdown") {
 distro.sprite.SetOpacity(0);
-stopping.sprite.SetOpacity(1);
+stopping.sprite.SetOpacity(0);
 }
-     
-    
+
+
 progress = 0.0;
 
 fun remap (val, imin, imax, omin, omax) {
@@ -253,19 +253,26 @@ top_of_the_text = TextYOffset();
 
 #----------------------------------------- Progress Bar --------------------------------
 #
-x_logo.image = Image("x_logo.png");
-x_logo.sprite = Sprite(x_logo.image);
+shutdown_bg.image = Image("progress_bg.png");
+shutdown_bg.sprite = Sprite(shutdown_bg.image);
 
-x_logo.x = Window.GetWidth()  / 2 -    x_logo.image.GetWidth()  / 2;
-x_logo.y = Window.GetHeight() * 0.40 - x_logo.image.GetHeight() / 2;
-x_logo.sprite.SetPosition(x_logo.x, x_logo.y, 4);
+shutdown_bg.x = Window.GetWidth()  / 2 -    progress_bg.image.GetWidth()  / 2;
+shutdown_bg.y = Window.GetHeight() * 0.85 - progress_bg.image.GetHeight() / 2;
+shutdown_bg.sprite.SetPosition(shutdown_bg.x, shutdown_bg.y, 2);
 
-shutdown.image = Image("shutdown.png");
-shutdown.sprite = Sprite(shutdown.image);
+shutdown_box.image = Image("progress_box.png");
+shutdown_box.sprite = Sprite(shutdown_box.image);
 
-shutdown.x = Window.GetWidth()  / 2 -    shutdown.image.GetWidth()  / 2;
-shutdown.y = Window.GetHeight() * 0.50 - shutdown.image.GetHeight() / 2;
-shutdown.sprite.SetPosition(shutdown.x, shutdown.y, 4);
+shutdown_box.x = Window.GetWidth()  / 2 -    progress_box.image.GetWidth()  / 2;
+shutdown_box.y = Window.GetHeight() * 0.85 - progress_box.image.GetHeight() / 2;
+shutdown_box.sprite.SetPosition(shutdown_box.x, shutdown_box.y, 4);
+
+shutdown_bar.original_image = Image("progress_bar.png");
+shutdown_bar.sprite = Sprite();
+
+shutdown_bar.x = Window.GetWidth()  / 2 -        progress_bar.original_image.GetWidth() / 2;
+shutdown_bar.y = Window.GetHeight() / 2 * 1.7  - progress_box.image.GetHeight() / 2 + (progress_box.image.GetHeight() - progress_bar.original_image.GetHeight()) / 2;
+shutdown_bar.sprite.SetPosition(shutdown_bar.x, shutdown_bar.y, 3);
 
 if (mode == "boot") {
 x_logo.sprite.SetOpacity(0);
@@ -274,7 +281,7 @@ shutdown.sprite.SetOpacity(0);
 
 if (mode == "shutdown") {
 x_logo.sprite.SetOpacity(0);
-shutdown.sprite.SetOpacity(1);
+shutdown.sprite.SetOpacity(0);
 }
 
 progress_bg.image = Image("progress_bg.png");
@@ -318,9 +325,9 @@ progress_bg.sprite.SetOpacity(1);
 }
 
 if (mode == "shutdown") {
-progress_box.sprite.SetOpacity(0);
-progress_bar.sprite.SetOpacity(0);
-progress_bg.sprite.SetOpacity(0);
+shutdown_box.sprite.SetOpacity(0);
+shutdown_bar.sprite.SetOpacity(0);
+shutdown_bg.sprite.SetOpacity(0);
 }
 
 #----------------------------------------- Quit --------------------------------
@@ -358,11 +365,11 @@ fun refresh_callback ()
 #    draw_logo ();
 
 #    if (mode != "suspend" && mode != "resume") {
-    
+
 #    Window.SetBackgroundTopColor (rt, gt, bt);                  #gradient - darker at the top of screen
     Window.SetBackgroundTopColor (r, g, b);                      #no gradient
     Window.SetBackgroundBottomColor (r, g, b);
-    
+
     }
     if (mode == "shutdown") {
     Window.SetBackgroundTopColor (0, 0, 0);                  #rgb 0.00, 0.11, 0.30      0, 28, 77       001c4d
@@ -382,7 +389,7 @@ Plymouth.SetRefreshFunction (refresh_callback);
 fun quit_callback ()
 {
     logo.sprite.SetOpacity (0);
-#    switch_on_bullets (); 
+    switch_on_bullets ();
 }
 
 Plymouth.SetQuitFunction(quit_callback);

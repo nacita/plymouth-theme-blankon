@@ -1,3 +1,9 @@
+plymouth-theme-blankon (0.8) tambora; urgency=medium
+
+  * Make boot and shutdown some progress-bar 
+
+ -- dotovr <dotovr@preko>  Sun, 19 Jun 2016 02:09:01 +0700
+
 plymouth-theme-blankon (0.7) tambora; urgency=medium
 
   * Resize progress-*.png
