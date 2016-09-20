@@ -1,3 +1,9 @@
+plymouth-theme-blankon (0.10) tambora; urgency=medium
+
+  * Support armhf 
+
+ -- Rahman Yusri Aftian <aftian@blankon.id>  Tue, 20 Sep 2016 19:47:03 +0700
+
 plymouth-theme-blankon (0.9) tambora; urgency=medium
 
   * Add fitur unlock password by mdamt 
