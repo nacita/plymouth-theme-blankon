@@ -1,3 +1,9 @@
+plymouth-theme-blankon (0.12blankon1) verbeek; urgency=medium
+
+  * for testing irgsh-dev 
+
+ -- Samsul Ma'arif <hay@samsul.web.id>  Thu, 15 Apr 2021 22:50:26 +0700
+
 plymouth-theme-blankon (0.12) verbeek; urgency=medium
 
   * rebuild for verbeek
